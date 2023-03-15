@@ -21,3 +21,7 @@ section{
     transform: translateY(0px);
     opacity: 1;
 }
+
+.black {
+    background-image: url('/images/background.svg');
+}
