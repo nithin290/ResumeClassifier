@@ -23,5 +23,5 @@ section{
 }
 
 .black {
-    background-image: url('/images/background.svg');
+    background-image: url('../images/background.svg');
 }
