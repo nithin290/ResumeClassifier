@@ -14,7 +14,41 @@ cv = joblib.load("cv.pkl")
 le = joblib.load("le.pkl")
 
 
-# Main function here
+@app.route('/recruiter', methods=['GET','POST'])
+def recruiter():
+    names = ''
+    if(request.method == "POST"):
+        
+        job_category_encoded = request.form.get("recSel")
+        print(type(job_category_encoded))
+
+        jc_string  = int(job_category_encoded)
+        print(jc_string)
+        print(type(jc_string))
+        jc_list = [jc_string]
+        # jc_list = column_or_1d(jc_list,warn = True)
+
+        print(jc_list)
+        print(type(jc_list))
+        job_category = le.inverse_transform([jc_list])
+        print(job_category)
+        recruiter = pd.read_csv("applicants.csv",header = 0,index_col = False)
+        names = ''
+
+        for i in range(len(recruiter)):
+            if(recruiter.loc[i,"model_category"] == job_category[0]):
+                # print(recruiter.loc[i,"name"])
+                names += (recruiter.loc[i,"name"])
+                names += '\n'
+
+        print(names)
+
+            
+    if(names = ''):
+        names = "No applicant has been found"
+    return render_template("recruiterout.html",output = names)
+    
+    # Main function here
 @app.route('/applicant', methods=['GET','POST'])
 def main():
     
@@ -61,7 +95,7 @@ def main():
 
         
         # Put inputs to dataframe
-        X = pd.DataFrame([[name,pref1,pref2,pref3,workexp,text]], columns = ["name","pref1","pref2","pref3","workexp","resume"])
+        X = pd.DataFrame([[name,pref1,pref2,pref3,workexp,text,""]], columns = ["name","pref1","pref2","pref3","workexp","resume","model_category"])
 
 
         X['resume'] = X['resume'].str.replace("    ", " ")
@@ -79,6 +113,8 @@ def main():
         print(last[0])
 
         print(X)
+        
+        X["model_category"] = last[0]
         
         applicants = pd.read_csv("applicants.csv",header = 0,index_col = False)
         print(applicants.tail())
