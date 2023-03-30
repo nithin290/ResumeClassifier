@@ -1,27 +1,69 @@
-section{
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fasthand&display=swap');
+
+section {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.whi{
+.whi {
     background-color: beige;
     color: black;
 }
 
-.reveal{
+.reveal {
     position: relative;
     transform: translateY(150px);
     opacity: 0;
     transition: all 1s ease;
 }
 
-.reveal.active{
+.reveal.active {
     transform: translateY(0px);
     opacity: 1;
 }
 
 .black {
-    background-image: url('../assests/images/background.svg');
+    background-image: url('background.svg');
+}
+
+.LOGO h1 {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 300;
+    font-size: 60px;
+    color: #080808;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+.LOGO h1:before {
+    width: 28px;
+    height: 5px;
+    display: block;
+    content: "";
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    margin-left: -14px;
+    background-color: #b80000;
+}
+
+.LOGO h1:after {
+    width: 100px;
+    height: 1px;
+    display: block;
+    content: "";
+    position: relative;
+    margin-top: 25px;
+    left: 50%;
+    margin-left: -50px;
+    background-color: #b80000;
 }
